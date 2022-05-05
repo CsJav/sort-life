@@ -1,0 +1,3 @@
+Pienso que debe ser algo que yo ponga como input la tarea con la fecha y el programa las vaya organizando en el orden en que debo hacerlas. Si quiero verlas por clase, pues que haya un parámetro (como un tag que las separé de las demas)
+
+Otra cosa que he tenido en mente es una app que pueda track como un weekly routine. Ejemplo estableces los horarios fijos (maybe las clases) y que en base a la hora que te acuestes o despiertes modifica la rutina que debes llevar en el dia
