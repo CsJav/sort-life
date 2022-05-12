@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { ColorModeScript } from '@chakra-ui/react'
 import { ChakraProvider } from "@chakra-ui/react";
 import {
   BrowserRouter,
@@ -12,7 +13,7 @@ import {
 import { extendTheme } from "@chakra-ui/react";
 import { StrictMode } from "react";
 import About from "./Scenes/about";
-import Start from "./Scenes/start";
+import Start from "./Scenes/Start";
 
 const colors = {
   brand: {
@@ -28,7 +29,8 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <StrictMode>
     <BrowserRouter>
-      <ChakraProvider theme={theme}>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+      <ChakraProvider theme={theme} >
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/About" element={<About />} />
