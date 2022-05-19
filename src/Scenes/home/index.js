@@ -10,6 +10,7 @@ import { BiEdit, BiTrash } from 'react-icons/bi';
 import {
     RangeDatePicker
 } from "react-google-flight-datepicker";
+import Card from '../components/card';
 import "react-google-flight-datepicker/dist/main.css";
 
 
@@ -108,7 +109,8 @@ export default function Main() {
                     <Button onClick={handleRemoveListButton} colorScheme='red'>Remove last item</Button>
                 </Center>
                 <br />
-
+                <Center><Card /></Center>
+                <br />
                 <Center>
                     <Box boxShadow='xl' p='6' rounded='md' bg='white' boxSize="l" minW="900">
                         <TableContainer>
