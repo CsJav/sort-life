@@ -15,7 +15,7 @@ export default function Card() {
     }
     return (
         <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-            <Image src={property.imageUrl} alt={property.imageAlt} p={5} borderRadius="25" />
+            <Image src={property.imageUrl} alt={property.imageAlt} p={8} borderRadius="40" />
 
             <Box p='6'>
                 <Box display='flex' alignItems='baseline'>

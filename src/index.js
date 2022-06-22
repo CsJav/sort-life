@@ -12,7 +12,7 @@ import {
 } from "react-router-dom";
 import { extendTheme } from "@chakra-ui/react";
 import { StrictMode } from "react";
-import About from "./Scenes/about";
+import About from "./Scenes/About";
 import Start from "./Scenes/Start";
 
 const colors = {

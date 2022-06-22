@@ -10,7 +10,7 @@ import { BiEdit, BiTrash } from 'react-icons/bi';
 import {
     RangeDatePicker
 } from "react-google-flight-datepicker";
-import Card from '../components/card';
+import Card from '../components/Card';
 import "react-google-flight-datepicker/dist/main.css";
 
 
