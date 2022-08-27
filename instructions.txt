@@ -8,5 +8,6 @@ Otra cosa que he tenido en mente es una app que pueda track como un weekly routi
 -Organizando en el orden que se deben hacerlas
 -Filtros por tipo/clase - "que las separe/focus"
 
+*my recommendation
 -track weekly routine: win streak
 -en base a la hora que te acuestes o despiertes modifica la rutina que debes llevar en el dia

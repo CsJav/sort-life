@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
     Box,
@@ -7,8 +6,10 @@ import {
     Button,
     Center,
     useColorMode,
+    Breadcrumb,
+    BreadcrumbItem,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import Card from "../components/Card";
 import "react-google-flight-datepicker/dist/main.css";
 import RowTable from "../components/Table";
@@ -17,12 +18,15 @@ import Task from "../components/Task";
 export default function Main() {
     const { colorMode, toggleColorMode } = useColorMode();
 
+    const navigate = useNavigate();
+
     function handleStartClick() {
-        console.log("Button Clicked");
+        navigate("/start");
     }
     const [task, setTask] = useState();
     const [table, setTable] = useState([]);
     const [date, setDate] = useState([]);
+    const taskList = table.map((item, index) => <Card key={index} task={item} />);
 
     function handleAddListButton() {
         task === "" ? setTask("") : setTable([...table, task]);
@@ -39,7 +43,6 @@ export default function Main() {
         console.log("start", start);
         console.log("end", end);
     }
-
     return (
         <>
             <Box maxW="32rem">
@@ -53,30 +56,38 @@ export default function Main() {
                     SortLife helps people get organized, anywhere anytime{" "}
                 </Text>{" "}
                 <br />
+
                 <Center>
-                    <Button colorScheme="blue" onClick={toggleColorMode}>
-                        Toggle {colorMode === "light" ? "Dark" : "Light"}
-                    </Button>
+                    <Breadcrumb>
+                        <BreadcrumbItem>
+                            <Button
+                                size="md"
+                                colorScheme="green"
+                                onClick={() => handleStartClick()}
+                            >
+                                Build Road Map
+                            </Button>
+                        </BreadcrumbItem>
+
+                        <BreadcrumbItem>
+                            <Button size="md" colorScheme="blue" onClick={toggleColorMode}>
+                                Toggle {colorMode === "light" ? "Dark" : "Light"}
+                            </Button>
+                        </BreadcrumbItem>
+                    </Breadcrumb>
                 </Center>
-                <Center>
-                    <Link to="/Start">
-                        <Button
-                            size="lg"
-                            colorScheme="green"
-                            mt="24px"
-                            onClick={() => handleStartClick()}
-                        >
-                            Get Started{" "}
-                        </Button>
-                    </Link>{" "}
-                </Center>
+
                 <br />
+                <Task
+                    task={task}
+                    setTask={setTask}
+                    date={date}
+                    onDateChange={onDateChange}
+                    handleAddListButton={handleAddListButton}
+                    handleRemoveListButton={handleRemoveListButton}
+                />
                 <br />
-                <Task task={task} setTask={setTask} date={date} onDateChange={onDateChange} handleAddListButton={handleAddListButton} handleRemoveListButton={handleRemoveListButton} />
-                <br />
-                <Center>
-                    <Card />
-                </Center>
+                <Center>{taskList}</Center>
                 <br />
                 <Center>
                     <RowTable table={table} date={date} />

@@ -1,4 +1,4 @@
-import { Button, Center, Checkbox, FormControl, FormLabel, Input } from "@chakra-ui/react";
+import { Button, Center, Checkbox, FormControl, FormLabel, Input, Stack } from "@chakra-ui/react";
 import { RangeDatePicker } from "react-google-flight-datepicker";
 import React from "react";
 export default function Task({
@@ -9,10 +9,22 @@ export default function Task({
     handleAddListButton,
     handleRemoveListButton
 }) {
-    return <><FormControl>
-        <FormLabel htmlFor="email">Task</FormLabel>
-        <Input value={task} onChange={e => setTask(e.target.value)} id="email" type="email" />
-    </FormControl>
+    return <>
+        <FormControl>
+            <FormLabel htmlFor="task">Task:</FormLabel>
+            <Stack spacing={4} direction='row' align='center'>
+                <Input id="task" variant='filled' value={task} onChange={e => setTask(e.target.value)} />
+                <Input
+                    placeholder="Select Date and Time"
+                    size="md"
+                    type="datetime-local"
+                    htmlSize="sm"
+                    style={{ width: "80%" }}
+                />
+            </Stack>
+            <br />
+            <FormLabel htmlFor="task">Task: {task}</FormLabel>
+        </FormControl>
         <br />
         <Center>
             <h2>
@@ -31,5 +43,6 @@ export default function Task({
             <Button onClick={handleRemoveListButton} colorScheme="red">
                 Remove last item
             </Button>
-        </Center></>;
+        </Center>
+    </>;
 }
