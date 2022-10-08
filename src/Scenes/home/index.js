@@ -1,32 +1,26 @@
+
 import React, { useState } from 'react';
-import {
-  Box,
-  Heading,
-  Text,
-  Button,
-  Center,
-  useColorMode,
-  Breadcrumb,
-  BreadcrumbItem,
-} from '@chakra-ui/react';
+import { Box, Center, useColorMode } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+
 import Card from '../components/Card';
 import RowTable from '../components/Table';
 import Task from '../components/Task';
 import 'react-google-flight-datepicker/dist/main.css';
+import { Navbar } from './NavBar/Navbar';
+import Header from './Header/Header';
 
 export default function Main() {
+  const [task, setTask] = useState();
+  const [table, setTable] = useState([]);
+  const [date, setDate] = useState([]);
+  const taskList = table.map((item, index) => <Card key={index} task={item} />);
   const { colorMode, toggleColorMode } = useColorMode();
-
   const navigate = useNavigate();
 
   function handleStartClick() {
     navigate('/start');
   }
-  const [task, setTask] = useState();
-  const [table, setTable] = useState([]);
-  const [date, setDate] = useState([]);
-  const taskList = table.map((item, index) => <Card key={index} task={item} />);
 
   function handleAddListButton() {
     task === '' ? setTask('') : setTable([...table, task]);
@@ -48,34 +42,15 @@ export default function Main() {
       <Box maxW="32rem">
         <br />
         <br />
-        <Heading mb={4} textAlign="center">
-          {' '}
-          Life&apos;s Sorting Tool{' '}
-        </Heading>{' '}
-        <Text fontSize="xl">
-          SortLife helps people get organized, anywhere anytime{' '}
-        </Text>{' '}
+        <Header />
         <br />
         <Center>
-          <Breadcrumb>
-            <BreadcrumbItem>
-              <Button
-                size="md"
-                colorScheme="green"
-                onClick={() => handleStartClick()}
-              >
-                Build Road Map
-              </Button>
-            </BreadcrumbItem>
-
-            <BreadcrumbItem>
-              <Button size="md" colorScheme="blue" onClick={toggleColorMode}>
-                Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
-              </Button>
-            </BreadcrumbItem>
-          </Breadcrumb>
+          <Navbar
+            handleStartClick={handleStartClick}
+            toggleColorMode={toggleColorMode}
+            colorMode={colorMode}
+          />
         </Center>
-        <br />
         <Task
           task={task}
           setTask={setTask}

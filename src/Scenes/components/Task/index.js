@@ -1,75 +1,80 @@
+import React, { useState } from 'react';
 import {
-  Button,
   Center,
   Checkbox,
   FormControl,
   FormLabel,
+  IconButton,
   Input,
+  List,
+  ListItem,
   Stack,
 } from '@chakra-ui/react';
-import { RangeDatePicker } from 'react-google-flight-datepicker';
-import React, { useState } from 'react';
+// import { RangeDatePicker } from 'react-google-flight-datepicker';
+import { DownloadIcon } from '@chakra-ui/icons';
 import Card from '../Card';
-export default function Task({
-  date,
-  onDateChange,
-  handleAddListButton,
-  handleRemoveListButton,
-}) {
-  const [task, setTask] = useState({ taskDescription: '', taskDate: '' });
-  const [taskDescription, setTaskDescription] = useState();
+import CustomControlsExample from './CustomControlsExample';
 
-  console.log(task);
-  console.log(taskDescription);
+export default function Task() {
+  const [taskDescription, setTaskDescription] = useState();
+  const [taskDate, setTaskDate] = useState();
+
   return (
     <>
       <FormControl>
-        <FormLabel htmlFor="task">Task:</FormLabel>
+        <FormLabel htmlFor="task">
+          Task: <br />
+        </FormLabel>
         <Stack spacing={4} direction="row" align="center">
           <Input
             id="task"
             variant="filled"
             value={taskDescription}
             onChange={e => setTaskDescription(e.currentTarget.value)}
+            placeholder="Here is a sample placeholder"
+            size="sm"
+            style={{ width: '80%' }}
           />
           <Input
-            value={task.taskDate}
-            onChange={e => setTask(e.currentTarget.value.taskDate)}
+            value={taskDate}
+            onChange={e => setTaskDate(e.currentTarget.value)}
             placeholder="Select Date and Time"
             size="md"
             type="datetime-local"
             htmlSize="sm"
             style={{ width: '80%' }}
           />
+          <IconButton
+            colorScheme="teal"
+            aria-label="Call Segun"
+            icon={<DownloadIcon />}
+          />
         </Stack>
+        {/* <Checkbox defaultChecked>Checkbox</Checkbox> */}
+        <List spacing={3}>
+          <ListItem>
+            <Stack spacing={4} direction="row" align="center">
+              <Checkbox defaultChecked />
+              <CustomControlsExample />
+            </Stack>
+          </ListItem>
+          <ListItem>
+            <Stack spacing={4} direction="row" align="center">
+              <Checkbox defaultChecked />
+              <CustomControlsExample />
+            </Stack>
+          </ListItem>
+        </List>
         <br />
-        <FormLabel htmlFor="task">Task: {taskDescription}</FormLabel>
         <Center>
-          <Card></Card>
+          <Card />
         </Center>
       </FormControl>
       <br />
-      <Center>
-        <h2>
-          Pick a Date{' '}
-          <Checkbox defaultChecked ml={8}>
-            Ask for date
-          </Checkbox>
-        </h2>
-      </Center>
-      <RangeDatePicker
+      {/* <RangeDatePicker
         value={date}
         onChange={(startDate, endDate) => onDateChange(startDate, endDate)}
-      />
-      <br />
-      <Center>
-        <Button m={[4]} onClick={handleAddListButton} colorScheme="blue">
-          Add to list
-        </Button>
-        <Button onClick={handleRemoveListButton} colorScheme="red">
-          Remove last item
-        </Button>
-      </Center>
+      /> */}
     </>
   );
 }

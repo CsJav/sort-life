@@ -61,15 +61,15 @@
       ]
     },
     "settings": {
+      "indentRainbow.ignoreErrorLanguages": ["*"],
+      "indentRainbow.colorOnWhiteSpaceOnly": true,
       "import/resolver": {
         "node": {
           "paths": [
             "src"
           ]
         }
-      },
-      "indentRainbow.ignoreErrorLanguages": ["*"],
-      "indentRainbow.colorOnWhiteSpaceOnly": true
+      }
     }
   },
   "browserslist": {
