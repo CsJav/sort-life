@@ -11,6 +11,9 @@
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
     "framer-motion": "6",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-google-flight-datepicker": "^0.1.18",
@@ -23,13 +26,51 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src"
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --fix",
+      "yarn test:staged"
+    ]
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
+      "react-app/jest",
+      "plugin:prettier/recommended"
+    ],
+    "plugins": [
+      "import"
+    ],
+    "rules": {
+      "import/order": [
+        "error",
+        {
+          "groups": [
+            "builtin",
+            "external",
+            "internal",
+            "parent",
+            "sibling",
+            "index"
+          ],
+          "newlines-between": "ignore"
+        }
+      ]
+    },
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "paths": [
+            "src"
+          ]
+        }
+      },
+      "indentRainbow.ignoreErrorLanguages": ["*"],
+      "indentRainbow.colorOnWhiteSpaceOnly": true
+    }
   },
   "browserslist": {
     "production": [

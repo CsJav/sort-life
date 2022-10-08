@@ -1,36 +1,32 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { ColorModeScript } from '@chakra-ui/react'
-import { ChakraProvider } from "@chakra-ui/react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
-import { extendTheme } from "@chakra-ui/react";
-import { StrictMode } from "react";
-import About from "./Scenes/About";
-import Start from "./Scenes/Start";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { ColorModeScript } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { extendTheme } from '@chakra-ui/react';
+import { StrictMode } from 'react';
+import About from './Scenes/About';
+import Start from './Scenes/Stats';
 
 const colors = {
   brand: {
-    900: "#1a365d",
-    800: "#153e75",
-    700: "#2a69ac",
+    900: '#1a365d',
+    800: '#153e75',
+    700: '#2a69ac',
   },
 };
 
 const theme = extendTheme({ colors });
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <StrictMode>
     <BrowserRouter>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      <ChakraProvider theme={theme} >
+      <ChakraProvider theme={theme}>
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/About" element={<About />} />
@@ -38,7 +34,7 @@ root.render(
         </Routes>
       </ChakraProvider>
     </BrowserRouter>
-  </StrictMode>
+  </StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function
