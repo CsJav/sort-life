@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
 import RowTable from '../components/Table';
 import Task from '../components/Task';
-import 'react-google-flight-datepicker/dist/main.css';
 import { Navbar } from './NavBar/Navbar';
 import Header from './Header/Header';
 
