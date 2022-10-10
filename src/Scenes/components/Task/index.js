@@ -12,7 +12,7 @@ import {
   Stack,
 } from '@chakra-ui/react';
 import Card from '../Card';
-import CustomControlsExample from './CustomControlsExample';
+import CustomControls from './CustomControls';
 import { format } from 'date-fns';
 import { PopoverForm } from './PopoverForm/PopoverForm';
 
@@ -57,7 +57,7 @@ export default function Task() {
 
   function progressBar() {
     const totalTasks = taskList.length;
-    const completedTasks = taskList.filter((task) => task.isCompleted).length;
+    const completedTasks = taskList.filter(task => task.isCompleted).length;
     return (completedTasks / totalTasks) * 100;
   }
 
@@ -92,7 +92,7 @@ export default function Task() {
             <ListItem key={index}>
               <Stack spacing={4} direction="row" align="center">
                 <Checkbox onChange={() => handleTaskCompleted(index)} />
-                <CustomControlsExample task={task.task} />
+                <CustomControls task={task} />
               </Stack>
             </ListItem>
           ))}
