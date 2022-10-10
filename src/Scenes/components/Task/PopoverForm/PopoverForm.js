@@ -1,6 +1,6 @@
 import { CalendarIcon } from '@chakra-ui/icons';
 import {
-  Box,
+  // Box,
   IconButton,
   Popover,
   PopoverArrow,
@@ -19,9 +19,9 @@ export const PopoverForm = () => {
 
   return (
     <>
-      <Box display="inline-block" mr={3}>
+      {/* <Box display="inline-block" mr={3}>
         Date...
-      </Box>
+      </Box> */}
       <Popover
         isOpen={isOpen}
         initialFocusRef={firstFieldRef}

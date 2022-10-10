@@ -13,10 +13,55 @@ import {
 } from '@chakra-ui/react';
 import Card from '../Card';
 import CustomControlsExample from './CustomControlsExample';
+import { format } from 'date-fns';
 import { PopoverForm } from './PopoverForm/PopoverForm';
 
+const DATE_FORMAT = "yyyy-MM-dd'T'HH:mm";
+
+const data = [
+  {
+    task: 'Task 1',
+    date: format(new Date(), DATE_FORMAT),
+    endDate: format(new Date(), DATE_FORMAT),
+    isCompleted: false,
+  },
+  {
+    task: 'Task 2',
+    date: format(new Date(), DATE_FORMAT),
+    endDate: format(new Date(), DATE_FORMAT),
+    isCompleted: false,
+  },
+];
+
 export default function Task() {
-  const [taskDescription, setTaskDescription] = useState();
+  const [taskDescription, setTaskDescription] = useState('');
+  const [taskList, setTaskList] = useState(data);
+
+  function handleAddTask() {
+    setTaskList([
+      ...taskList,
+      {
+        task: taskDescription,
+        date: format(new Date(), DATE_FORMAT),
+        endDate: format(new Date(), DATE_FORMAT),
+        isCompleted: false,
+      },
+    ]);
+  }
+
+  function handleTaskCompleted(index) {
+    const newTaskList = [...taskList];
+    newTaskList[index].isCompleted = !newTaskList[index].isCompleted;
+    setTaskList(newTaskList);
+  }
+
+  function progressBar() {
+    const totalTasks = taskList.length;
+    const completedTasks = taskList.filter((task) => task.isCompleted).length;
+    return (completedTasks / totalTasks) * 100;
+  }
+
+  console.log(taskList);
 
   return (
     <>
@@ -35,26 +80,22 @@ export default function Task() {
             size="sm"
           />
           <PopoverForm />
-          <Button colorScheme="teal">
+          <Button colorScheme="teal" onClick={handleAddTask}>
             Add
           </Button>
         </Stack>
         <br />
-        <Progress value={20} size="xs" colorScheme="pink" />
+        <Progress value={progressBar()} size="xs" colorScheme="pink" />
         <br />
         <List spacing={3}>
-          <ListItem>
-            <Stack spacing={4} direction="row" align="center">
-              <Checkbox defaultChecked />
-              <CustomControlsExample />
-            </Stack>
-          </ListItem>
-          <ListItem>
-            <Stack spacing={4} direction="row" align="center">
-              <Checkbox defaultChecked />
-              <CustomControlsExample />
-            </Stack>
-          </ListItem>
+          {taskList.map((task, index) => (
+            <ListItem key={index}>
+              <Stack spacing={4} direction="row" align="center">
+                <Checkbox onChange={() => handleTaskCompleted(index)} />
+                <CustomControlsExample task={task.task} />
+              </Stack>
+            </ListItem>
+          ))}
         </List>
         <br />
         <Center>

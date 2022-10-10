@@ -6,7 +6,7 @@ export default function Header() {
     <>
       <Heading mb={4} textAlign="center">
         {' '}
-        Life&apos;s Sorting Tool{' '}
+        Life&apos;s Sort Tool{' '}
       </Heading>{' '}
       <Text fontSize="xl">
         SortLife helps people get organized, anywhere anytime{' '}

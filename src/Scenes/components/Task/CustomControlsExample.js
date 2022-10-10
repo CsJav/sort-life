@@ -9,18 +9,18 @@ import {
 import HambergerMenu from './HambergerMenu';
 import EditableControls from './EditableControls';
 
-export default function CustomControlsExample() {
+export default function CustomControlsExample({ task }) {
   /* Here's a custom control */
   return (
     <Editable
       textAlign="center"
-      defaultValue="Rasengan"
+      defaultValue={task}
       isPreviewFocusable={false}
     >
       <Stack spacing={4} direction="row" align="center">
         <EditablePreview style={{ width: 475 }} />
         {/* Here is the custom input */}
-        <Input as={EditableInput} style={{ width: 475 }} />
+        <Input value={task.task} as={EditableInput} style={{ width: 475 }} />
         <EditableControls />
         <HambergerMenu />
       </Stack>

@@ -1,28 +1,43 @@
-import { Button, ButtonGroup, Input, Stack } from '@chakra-ui/react';
+import { Button, ButtonGroup, FormControl, FormLabel, Input, Stack, Switch } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
 // 2. Create the form
 export const Form = ({ firstFieldRef, onCancel }) => {
-  const [taskDate, setTaskDate] = useState();
+  const [startDate, setStartDate] = useState();
+  const [hasEndDate, setHasEndDate] = useState(false);
+  const [endDate, setEndDate] = useState();
+  
+
+  const handleRangeSwitch = (e) => {
+    setHasEndDate(e.target.checked);
+  }
+
+  console.log(startDate, endDate, hasEndDate);
 
   return (
     <Stack spacing={4}>
-      <label htmlFor="startDate">Start Date</label>
+      <FormLabel htmlFor="startDate">Start Date</FormLabel>
       <Input
         className="startDate"
-        value={taskDate}
-        onChange={e => setTaskDate(e.currentTarget.value)}
+        value={startDate}
+        onChange={e => setStartDate(e.currentTarget.value)}
         placeholder="Select Date and Time"
         size="md"
         type="datetime-local"
         htmlSize="sm"
         ref={firstFieldRef}
       />
-      <label htmlFor="endDate">End Date</label>
+      <FormControl display="flex" alignItems="center">
+        <FormLabel htmlFor="endDate" disabled={!hasEndDate}>
+          End Date:
+        </FormLabel>
+        <Switch id="email-alerts" onChange={handleRangeSwitch} />
+      </FormControl>
       <Input
         className="endDate"
-        value={taskDate}
-        onChange={e => setTaskDate(e.currentTarget.value)}
+        disabled={!hasEndDate}
+        value={endDate}
+        onChange={e => setEndDate(e.currentTarget.value)}
         placeholder="Select Date and Time"
         size="md"
         type="datetime-local"

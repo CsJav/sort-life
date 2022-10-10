@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ColorModeScript } from '@chakra-ui/react';
@@ -10,6 +9,7 @@ import { extendTheme } from '@chakra-ui/react';
 import { StrictMode } from 'react';
 import About from './Scenes/About';
 import Start from './Scenes/Stats';
+import './index.css';
 
 const colors = {
   brand: {
