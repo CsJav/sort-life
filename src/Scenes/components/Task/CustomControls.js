@@ -5,6 +5,7 @@ import {
   EditableInput,
   EditablePreview,
   FormLabel,
+  HStack,
   IconButton,
   Input,
   Popover,
@@ -15,13 +16,39 @@ import {
   PopoverHeader,
   PopoverTrigger,
   Portal,
+  SlideFade,
   Stack,
+  Tag,
+  TagLabel,
+  TagLeftIcon,
+  TagRightIcon,
+  useDisclosure,
 } from '@chakra-ui/react';
 import EditableControls from './EditableControls';
-import { DeleteIcon } from '@chakra-ui/icons';
+import { CalendarIcon, DeleteIcon, TimeIcon } from '@chakra-ui/icons';
 
 export default function CustomControls({ task }) {
+  console.log('⚡task~', { task });
   const [deleteHover, setDeleteHover] = useState(false);
+  const { isOpen, onToggle } = useDisclosure();
+
+  const formatedDate = new Date(task.date).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
+  const formatedEndDate = new Date(task.endDate).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
+  const formatedDateRange = `${formatedDate} - ${formatedEndDate}`;
+
+  // format date range eg (06/26/22 2:50 PM - 06/27/22 2:50 PM)
+
+  // format date eg (October 26, 22 2:50 PM)
 
   return (
     <Editable
@@ -75,6 +102,19 @@ export default function CustomControls({ task }) {
             </PopoverContent>
           </Portal>
         </Popover>
+
+        <IconButton icon={<CalendarIcon />} onClick={onToggle} size={'sm'} />
+        <SlideFade in={isOpen} offsetY="20px">
+          <HStack spacing={4}>
+            {['md'].map(size => (
+              <Tag size={size} key={size} variant="subtle" colorScheme="cyan">
+                <TagLeftIcon boxSize="12px" as={CalendarIcon} />
+                <TagLabel>{formatedDateRange}</TagLabel>
+                <TagRightIcon as={TimeIcon} />
+              </Tag>
+            ))}
+          </HStack>
+        </SlideFade>
       </Stack>
     </Editable>
   );

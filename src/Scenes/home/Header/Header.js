@@ -4,6 +4,7 @@ import { Heading, Text } from '@chakra-ui/react';
 export default function Header() {
   return (
     <>
+      <br />
       <Heading mb={4} textAlign="center">
         {' '}
         Life&apos;s Sort Tool{' '}
@@ -11,6 +12,7 @@ export default function Header() {
       <Text fontSize="xl">
         SortLife helps people get organized, anywhere anytime{' '}
       </Text>{' '}
+      <br />
     </>
   );
 }

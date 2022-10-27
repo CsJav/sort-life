@@ -10,6 +10,7 @@ import {
   ListItem,
   Progress,
   Stack,
+  useToast,
 } from '@chakra-ui/react';
 import Card from '../Card';
 import CustomControls from './CustomControls';
@@ -35,9 +36,42 @@ const data = [
 
 export default function Task() {
   const [taskDescription, setTaskDescription] = useState('');
+  // const [date, setDate] = useState(format(new Date(), DATE_FORMAT));
+  // const [endDate, setEndDate] = useState(format(new Date(), DATE_FORMAT));
   const [taskList, setTaskList] = useState(data);
+  const toast = useToast();
 
   function handleAddTask() {
+    if (!taskDescription) {
+      toast({
+        position: 'top-left',
+        title: 'Task description is required',
+        status: 'warning',
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
+
+    // const isTaskAlreadyAdded = taskList.some(
+    //   (task) =>
+    //     task.task === taskDescription &&  
+    //     task.date === date &&
+    //     task.endDate === endDate 
+    // ); 
+      
+
+    // if (isTaskAlreadyAdded) {
+    //   toast({
+    //     position: 'top-left',
+    //     title: 'Task already added',
+    //     status: 'warning',
+    //     duration: 3000,
+    //     isClosable: true,
+    //   });
+    //   return;
+    // }
+
     setTaskList([
       ...taskList,
       {
@@ -60,8 +94,6 @@ export default function Task() {
     const completedTasks = taskList.filter(task => task.isCompleted).length;
     return (completedTasks / totalTasks) * 100;
   }
-
-  console.log(taskList);
 
   return (
     <>

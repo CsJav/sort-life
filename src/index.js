@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ColorModeScript } from '@chakra-ui/react';
@@ -20,7 +20,8 @@ const colors = {
 };
 
 const theme = extendTheme({ colors });
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const container = document.getElementById('root');
+const root = createRoot(container);
 
 root.render(
   <StrictMode>

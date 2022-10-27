@@ -12,7 +12,7 @@ export const Form = ({ firstFieldRef, onCancel }) => {
     setHasEndDate(e.target.checked);
   }
 
-  console.log(startDate, endDate, hasEndDate);
+  // console.log(startDate, endDate, hasEndDate);
 
   return (
     <Stack spacing={4}>
