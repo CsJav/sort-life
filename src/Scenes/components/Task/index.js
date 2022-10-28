@@ -36,8 +36,8 @@ const data = [
 
 export default function Task() {
   const [taskDescription, setTaskDescription] = useState('');
-  // const [date, setDate] = useState(format(new Date(), DATE_FORMAT));
-  // const [endDate, setEndDate] = useState(format(new Date(), DATE_FORMAT));
+  const [date, setDate] = useState();
+  const [endDate, setEndDate] = useState();
   const [taskList, setTaskList] = useState(data);
   const toast = useToast();
 
@@ -53,31 +53,42 @@ export default function Task() {
       return;
     }
 
-    // const isTaskAlreadyAdded = taskList.some(
-    //   (task) =>
-    //     task.task === taskDescription &&  
-    //     task.date === date &&
-    //     task.endDate === endDate 
-    // ); 
-      
+    const isTaskAlreadyAdded = taskList.some(
+      (task) =>
+        task.task === taskDescription &&
+        task.date === date &&
+        task.endDate === endDate
+    );
 
-    // if (isTaskAlreadyAdded) {
-    //   toast({
-    //     position: 'top-left',
-    //     title: 'Task already added',
-    //     status: 'warning',
-    //     duration: 3000,
-    //     isClosable: true,
-    //   });
-    //   return;
-    // }
+    if (isTaskAlreadyAdded) {
+      toast({
+        position: 'top-left',
+        title: 'Task already added',
+        status: 'warning',
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
 
+    if (taskDescription && !date && !endDate) {
+      setTaskList([
+        ...taskList,
+        {
+          task: taskDescription,
+          date: format(new Date(), DATE_FORMAT),
+          endDate: format(new Date(), DATE_FORMAT),
+          isCompleted: false,
+        },
+      ]);
+    }
+    
     setTaskList([
       ...taskList,
       {
         task: taskDescription,
-        date: format(new Date(), DATE_FORMAT),
-        endDate: format(new Date(), DATE_FORMAT),
+        date,
+        endDate,
         isCompleted: false,
       },
     ]);
@@ -111,7 +122,12 @@ export default function Task() {
             placeholder="Write your task here..."
             size="sm"
           />
-          <PopoverForm />
+          <PopoverForm
+            setDate={setDate}
+            setEndDate={setEndDate}
+            date={date}
+            endDate={endDate}
+          />
           <Button colorScheme="teal" onClick={handleAddTask}>
             Add
           </Button>

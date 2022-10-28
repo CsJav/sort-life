@@ -1,3 +1,4 @@
+import React, { useRef } from 'react';
 import { CalendarIcon } from '@chakra-ui/icons';
 import {
   // Box,
@@ -9,13 +10,12 @@ import {
   PopoverTrigger,
   useDisclosure,
 } from '@chakra-ui/react';
-import React from 'react';
 import FocusLock from 'react-focus-lock';
 import { Form } from './Form';
 
-export const PopoverForm = () => {
+export const PopoverForm = ({ setDate, setEndDate, date, endDate }) => {
   const { onOpen, onClose, isOpen } = useDisclosure();
-  const firstFieldRef = React.useRef(null);
+  const firstFieldRef = useRef(null);
 
   return (
     <>
@@ -37,7 +37,14 @@ export const PopoverForm = () => {
           <FocusLock returnFocus persistentFocus={false}>
             <PopoverArrow />
             <PopoverCloseButton />
-            <Form firstFieldRef={firstFieldRef} onCancel={onClose} />
+            <Form
+              firstFieldRef={firstFieldRef}
+              onCancel={onClose}
+              setDate={setDate}
+              setEndDate={setEndDate}
+              date={date}
+              endDate={endDate}
+            />
           </FocusLock>
         </PopoverContent>
       </Popover>

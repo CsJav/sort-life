@@ -46,6 +46,9 @@ export default function CustomControls({ task }) {
 
   const formatedDateRange = `${formatedDate} - ${formatedEndDate}`;
 
+  //if formatedDate and formatedEndDate have the same value, then show only one date
+  const dateFormat = formatedDate === formatedEndDate ? formatedDate : formatedDateRange;
+
   // format date range eg (06/26/22 2:50 PM - 06/27/22 2:50 PM)
 
   // format date eg (October 26, 22 2:50 PM)
@@ -109,7 +112,7 @@ export default function CustomControls({ task }) {
             {['md'].map(size => (
               <Tag size={size} key={size} variant="subtle" colorScheme="cyan">
                 <TagLeftIcon boxSize="12px" as={CalendarIcon} />
-                <TagLabel>{formatedDateRange}</TagLabel>
+                <TagLabel>{dateFormat}</TagLabel>
                 <TagRightIcon as={TimeIcon} />
               </Tag>
             ))}

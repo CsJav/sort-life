@@ -2,15 +2,19 @@ import { Button, ButtonGroup, FormControl, FormLabel, Input, Stack, Switch } fro
 import React, { useState } from 'react';
 
 // 2. Create the form
-export const Form = ({ firstFieldRef, onCancel }) => {
-  const [startDate, setStartDate] = useState();
+export const Form = ({
+  firstFieldRef,
+  onCancel,
+  setDate,
+  setEndDate,
+  date,
+  endDate,
+}) => {
   const [hasEndDate, setHasEndDate] = useState(false);
-  const [endDate, setEndDate] = useState();
-  
 
-  const handleRangeSwitch = (e) => {
+  const handleRangeSwitch = e => {
     setHasEndDate(e.target.checked);
-  }
+  };
 
   // console.log(startDate, endDate, hasEndDate);
 
@@ -19,8 +23,8 @@ export const Form = ({ firstFieldRef, onCancel }) => {
       <FormLabel htmlFor="startDate">Start Date</FormLabel>
       <Input
         className="startDate"
-        value={startDate}
-        onChange={e => setStartDate(e.currentTarget.value)}
+        value={date}
+        onChange={e => setDate(e.currentTarget.value)}
         placeholder="Select Date and Time"
         size="md"
         type="datetime-local"
