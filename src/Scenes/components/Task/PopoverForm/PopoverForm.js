@@ -11,7 +11,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import FocusLock from 'react-focus-lock';
-import { Form } from './Form';
+import { DatePickerForm } from './DatePickerForm';
 
 export const PopoverForm = ({ setDate, setEndDate, date, endDate }) => {
   const { onOpen, onClose, isOpen } = useDisclosure();
@@ -37,7 +37,7 @@ export const PopoverForm = ({ setDate, setEndDate, date, endDate }) => {
           <FocusLock returnFocus persistentFocus={false}>
             <PopoverArrow />
             <PopoverCloseButton />
-            <Form
+            <DatePickerForm
               firstFieldRef={firstFieldRef}
               onCancel={onClose}
               setDate={setDate}

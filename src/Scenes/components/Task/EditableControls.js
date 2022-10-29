@@ -1,9 +1,13 @@
 import React from 'react';
-import { ButtonGroup, Flex, IconButton, useEditableControls } from '@chakra-ui/react';
+import {
+  ButtonGroup,
+  Flex,
+  IconButton,
+  useEditableControls,
+} from '@chakra-ui/react';
 import { CheckIcon, CloseIcon, EditIcon } from '@chakra-ui/icons';
 
 export default function EditableControls() {
-
   const {
     isEditing,
     getSubmitButtonProps,

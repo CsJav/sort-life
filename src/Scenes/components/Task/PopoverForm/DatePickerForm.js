@@ -1,8 +1,18 @@
-import { Button, ButtonGroup, FormControl, FormLabel, Input, Stack, Switch } from '@chakra-ui/react';
+import {
+  Button,
+  ButtonGroup,
+  FormControl,
+  FormLabel,
+  Input,
+  Stack,
+  Switch,
+} from '@chakra-ui/react';
+import { format } from 'date-fns';
 import React, { useState } from 'react';
 
-// 2. Create the form
-export const Form = ({
+const DATE_FORMAT = "yyyy-MM-dd'T'HH:mm";
+
+export const DatePickerForm = ({
   firstFieldRef,
   onCancel,
   setDate,
@@ -16,7 +26,10 @@ export const Form = ({
     setHasEndDate(e.target.checked);
   };
 
-  // console.log(startDate, endDate, hasEndDate);
+  function handleToday() {
+    setDate(format(new Date(), DATE_FORMAT));
+    setEndDate(format(new Date(), DATE_FORMAT));
+  }
 
   return (
     <Stack spacing={4}>
@@ -30,6 +43,7 @@ export const Form = ({
         type="datetime-local"
         htmlSize="sm"
         ref={firstFieldRef}
+        defaultValue={format(new Date(), DATE_FORMAT)}
       />
       <FormControl display="flex" alignItems="center">
         <FormLabel htmlFor="endDate" disabled={!hasEndDate}>
@@ -47,11 +61,16 @@ export const Form = ({
         type="datetime-local"
         htmlSize="sm"
       />
-      <ButtonGroup display="flex" justifyContent="flex-end">
-        <Button variant="outline" onClick={onCancel}>
-          Cancel
+      <ButtonGroup
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        spacing="2.5rem"
+      >
+        <Button variant="outline" onClick={handleToday} colorScheme="twitter">
+          Today
         </Button>
-        <Button isDisabled colorScheme="teal">
+        <Button variant="outline" onClick={onCancel} colorScheme="whatsapp">
           Save
         </Button>
       </ButtonGroup>
