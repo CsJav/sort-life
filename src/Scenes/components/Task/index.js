@@ -115,12 +115,8 @@ export default function Task() {
   }
 
   function handleDeleteTask(index) {
-    const updatedTaskList = taskList.filter((task, i) => {
-      if (i === index) {
-        return null
-      }
-      return task;
-    });
+    const updatedTaskList = taskList.filter((task, i) => i !== index);
+    console.log('⚡updatedTaskList~', { updatedTaskList });
     setTaskList(updatedTaskList);
   }
 
